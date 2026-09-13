@@ -1,11 +1,9 @@
-version: "3.9"
-
 services:
   backend:
     build: .
     container_name: nest_backend
     ports:
-      - "5432:5432"
+      - "3000:3000"
     env_file:
       - .env
     depends_on:
@@ -18,9 +16,9 @@ services:
     container_name: postgres_db
     restart: always
     environment:
-      POSTGRES_DB: env.DB_NAME
-      POSTGRES_USER: env.DB_USER
-      POSTGRES_PASSWORD: env.DB_PASSWORD
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
